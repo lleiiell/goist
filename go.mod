@@ -1,4 +1,4 @@
-module goist
+module github.com/lleiiell/goist
 
 go 1.20
 
