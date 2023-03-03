@@ -3,7 +3,7 @@ package goist_test
 import (
     "fmt"
     "github.com/gin-gonic/gin"
-    "goist"
+    "github.com/lleiiell/goist"
     "log"
 )
 
