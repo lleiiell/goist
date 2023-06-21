@@ -3,12 +3,12 @@ package goist
 import "fmt"
 
 func ExampleBinarySearch() {
-	arr := []int{22, 11, 33, 100}
+	nums := []int{22, 11, 33, 100}
 	target1 := 1
 	target2 := 11
 
-	i1 := BinarySearch(arr, target1)
-	i2 := BinarySearch(arr, target2)
+	i1 := BinarySearch(nums, target1)
+	i2 := BinarySearch(nums, target2)
 
 	fmt.Println(i1, i2)
 
@@ -33,20 +33,29 @@ func ExampleFibonacciRecursion() {
 	// Output: 17711 true
 }
 
-func ExampleQuickSort() {
-	arr := []int{22, 11, 33, 55, 44, 66}
+func ExampleBubbleSort() {
+	nums := []int{22, 11, 33, 55, 44, 66}
 
-	arr2 := QuickSort(arr)
-	fmt.Println(arr2)
+	nums2 := BubbleSort(nums)
+	fmt.Println(nums2)
 
 	// Output: [11 22 33 44 55 66]
 }
 
-func ExampleBubbleSort() {
-	arr := []int{22, 11, 33, 55, 44, 66}
+func ExampleBucketSort() {
+	nums := []int{22, 11, 33, 55, 44, 66, 7}
 
-	arr2 := BubbleSort(arr)
-	fmt.Println(arr2)
+	nums2 := BucketSort(nums, 2)
+	fmt.Println(nums2)
+
+	// Output: [7 11 22 33 44 55 66]
+}
+
+func ExampleQuickSort() {
+	nums := []int{22, 11, 33, 55, 44, 66}
+
+	nums2 := QuickSort(nums)
+	fmt.Println(nums2)
 
 	// Output: [11 22 33 44 55 66]
 }

@@ -18,6 +18,10 @@ func BinarySearch(nums []int, target int) bool {
 	return false
 }
 
+/*
+BubbleSort
+冒泡排序的时间复杂度为 O(n^2)，效率较低
+*/
 func BubbleSort(nums []int) []int {
 	n := len(nums)
 	for i := 0; i < n-1; i++ {
@@ -28,6 +32,47 @@ func BubbleSort(nums []int) []int {
 		}
 	}
 	return nums
+}
+
+func BucketSort(nums []int, bucketSize int) []int {
+	if len(nums) < 2 {
+		return nums
+	}
+
+	// 计算最小值和最大值
+	minValue, maxValue := nums[0], nums[0]
+	for _, num := range nums {
+		if num < minValue {
+			minValue = num
+		} else if num > maxValue {
+			maxValue = num
+		}
+	}
+
+	// 计算桶的数量
+	bucketCount := (maxValue-minValue)/bucketSize + 1
+
+	// 初始化桶
+	buckets := make([][]int, bucketCount)
+	for i := 0; i < bucketCount; i++ {
+		buckets[i] = make([]int, 0)
+	}
+
+	// 将元素放入桶中
+	for _, num := range nums {
+		index := (num - minValue) / bucketSize
+		buckets[index] = append(buckets[index], num)
+	}
+
+	// 对每个桶进行排序
+	var sortedNums []int
+	for _, bucket := range buckets {
+		if len(bucket) > 0 {
+			sort.Ints(bucket)
+			sortedNums = append(sortedNums, bucket...)
+		}
+	}
+	return sortedNums
 }
 
 func FibonacciRecursion(n int) int {
@@ -50,6 +95,12 @@ func FibonacciDP(n int) int {
 	return f3
 }
 
+/*
+QuickSort
+快速排序算法的效率与 pivot 的选择有关。
+如果每次选择的 pivot 恰好是数组的中位数，那么算法的时间复杂度为 O(n log n)。
+如果每次选择的 pivot 恰好是数组的最小值或最大值，那么算法的时间复杂度为 O(n^2)，效率较低。
+*/
 func QuickSort(nums []int) []int {
 	if len(nums) < 2 {
 		return nums
@@ -70,12 +121,12 @@ func QuickSort(nums []int) []int {
 
 /*
 ClimbStairs3
-Function: ClimbStairs3
-Language: Go
-Description: Given a number of stairs, the task is to find the total number of ways to climb the stairs where at each step, the climber can either climb 1, 2, or 3 steps.
-Parameters:
-x: Total number of stairs
-Output: Number of ways to climb the stairs
+方法: ClimbStairs3
+语言: Go
+描述: 爬楼梯时，每次可以走一个或两个或三个台阶，总共有多少种爬法
+参数: 这个方法接收以下参数:
+x: 台阶总数
+输出: 爬台阶的方法数量
 */
 func ClimbStairs3(x int) int {
 	if x <= 2 {
