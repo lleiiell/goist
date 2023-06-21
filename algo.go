@@ -38,6 +38,24 @@ func FibonacciDP(n int) int {
 	return f3
 }
 
+func QuickSort(nums []int) []int {
+	if len(nums) < 2 {
+		return nums
+	}
+	pivot := nums[0]
+	var left, right []int
+	for _, num := range nums[1:] {
+		if num < pivot {
+			left = append(left, num)
+		} else {
+			right = append(right, num)
+		}
+	}
+	left = QuickSort(left)
+	right = QuickSort(right)
+	return append(append(left, pivot), right...)
+}
+
 /*
 ClimbStairs3
 Function: ClimbStairs3
