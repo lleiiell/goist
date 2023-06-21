@@ -41,3 +41,12 @@ func ExampleQuickSort() {
 
 	// Output: [11 22 33 44 55 66]
 }
+
+func ExampleBubbleSort() {
+	arr := []int{22, 11, 33, 55, 44, 66}
+
+	arr2 := BubbleSort(arr)
+	fmt.Println(arr2)
+
+	// Output: [11 22 33 44 55 66]
+}
