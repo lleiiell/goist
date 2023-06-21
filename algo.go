@@ -1,5 +1,23 @@
 package goist
 
+import "sort"
+
+func BinarySearch(nums []int, target int) bool {
+	sort.Ints(nums)
+	left, right := 0, len(nums)-1
+	for left <= right {
+		mid := (left + right) / 2
+		if nums[mid] == target {
+			return true
+		} else if nums[mid] > target {
+			right = mid - 1
+		} else {
+			left = mid + 1
+		}
+	}
+	return false
+}
+
 func FibonacciRecursion(n int) int {
 	if n < 2 {
 		return n
