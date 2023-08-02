@@ -1,7 +1,9 @@
 package goist
 
 import (
+	"math/rand"
 	"reflect"
+	"time"
 )
 
 func Contains(slice interface{}, item interface{}) bool {
@@ -16,4 +18,9 @@ func Contains(slice interface{}, item interface{}) bool {
 	}
 
 	return false
+}
+
+func Rand() *rand.Rand {
+	rn := rand.New(rand.NewSource(time.Now().UnixNano()))
+	return rn
 }
