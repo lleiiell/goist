@@ -4,14 +4,12 @@ import (
 	"bytes"
 	"encoding/binary"
 	"encoding/json"
-	"fmt"
 	"os"
 )
 
 func WriteBin(filename string, data interface{}) (err error) {
 	fp, err := os.OpenFile(filename, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0775)
 	if err != nil {
-		fmt.Println(err)
 		return
 	}
 	defer fp.Close()
