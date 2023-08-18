@@ -3,6 +3,7 @@ package goist_test
 import (
 	"fmt"
 	"github.com/lleiiell/goist"
+	"reflect"
 	"testing"
 )
 
@@ -36,4 +37,46 @@ second Int63:  415379671487512047
 func TestRand(t *testing.T) {
 	fmt.Println("first Int63: ", goist.Rand().Int63())
 	fmt.Println("second Int63: ", goist.Rand().Int63())
+}
+
+func TestUnique(t *testing.T) {
+	sla := []string{"a", "b", "b", "b", "c"}
+
+	goist.Unique(&sla)
+
+	slaNew := []string{"a", "b", "c"}
+	if !reflect.DeepEqual(sla, slaNew) {
+		t.Error("sla not equal", slaNew)
+		return
+	}
+
+	ila := []int{1, 2, 3, 3, 3}
+	goist.Unique(&ila)
+
+	ilaNew := []int{1, 2, 3}
+	if !reflect.DeepEqual(ila, ilaNew) {
+		t.Error("ila not equal", ila, ilaNew)
+		return
+
+	}
+
+	ilb := []int{1, 2, 3, 4, 5}
+	goist.Unique(&ilb)
+
+	ilbNew := []int{1, 2, 3, 4, 5}
+	if !reflect.DeepEqual(ilb, ilbNew) {
+		t.Error("ila not equal", ilb, ilbNew)
+		return
+
+	}
+
+	itl := []interface{}{1, "1", 2, 2, "a", "b", "b"}
+	goist.Unique(&itl)
+	itlNew := []interface{}{1, "1", 2, "a", "b"}
+	if !reflect.DeepEqual(itl, itlNew) {
+		t.Error("itl not equal", itl, itlNew)
+		return
+	}
+	fmt.Println("itl", itl)
+
 }
