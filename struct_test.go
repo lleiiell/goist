@@ -38,3 +38,18 @@ func ExampleStruct2Str() {
 	fmt.Println(Struct2Str(st, "", ""))
 	// Output: name,true,Title <nil>
 }
+
+func ExampleStruct2StrAndWrap() {
+	st := struct {
+		Name  string `json:"name,omitempty"`
+		True  bool   `json:"true"`
+		Title string
+	}{
+		"till",
+		true,
+		"title",
+	}
+
+	fmt.Println(Struct2StrAndWrap(st, "", "", "`"))
+	// Output: `name`,`true`,`Title` <nil>
+}

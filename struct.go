@@ -50,6 +50,10 @@ func Struct2MapMarshal(st interface{}) (m map[string]interface{}, err error) {
 }
 
 func Struct2Str(st interface{}, tag, sep string) (s string, err error) {
+	return Struct2StrAndWrap(st, tag, sep, "")
+}
+
+func Struct2StrAndWrap(st interface{}, tag, sep, wrap string) (s string, err error) {
 	v := reflect.ValueOf(st)
 	if v.Kind() == reflect.Ptr {
 		v = v.Elem()
@@ -74,12 +78,12 @@ func Struct2Str(st interface{}, tag, sep string) (s string, err error) {
 
 		if tv := fi.Tag.Get(tag); tv != "" {
 
-			tv, _ := strings.CutSuffix(tv, ",omitempty")
+			tv, _ = strings.CutSuffix(tv, ",omitempty")
 
-			s += fmt.Sprintf("%s,", tv)
+			s += fmt.Sprintf("%s%s%s%s", wrap, tv, wrap, sep)
 
 		} else {
-			s += fmt.Sprintf("%s,", fi.Name)
+			s += fmt.Sprintf("%s%s%s%s", wrap, fi.Name, wrap, sep)
 		}
 	}
 
