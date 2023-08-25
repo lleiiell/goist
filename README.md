@@ -1,5 +1,5 @@
 # goist
-go gists
+Gist functions for go
 
 ## Get started
 
