@@ -2,9 +2,32 @@ package goist
 
 import (
 	"crypto/md5"
+	"encoding/base64"
 	"encoding/hex"
+	"github.com/google/uuid"
 	"strings"
 )
+
+// UuidSimple uuid without special characters
+func UuidSimple() string {
+	escaper := strings.NewReplacer("-", "90", "_", "91")
+
+	return escaper.Replace(Uuid22())
+}
+
+// Uuid22 uuid of length 22
+func Uuid22() string {
+	id := Uuid32()
+
+	bt, _ := hex.DecodeString(id)
+
+	return base64.RawURLEncoding.EncodeToString(bt)
+}
+
+// Uuid32 uuid without dash
+func Uuid32() string {
+	return strings.Replace(uuid.New().String(), "-", "", -1)
+}
 
 // RandStr random string
 // n custom length

@@ -6,6 +6,15 @@ import (
 	"testing"
 )
 
+func TestUuidSimple(t *testing.T) {
+	uid := goist.UuidSimple()
+	if len(uid) < 22 {
+		t.Error(len(uid), uid)
+		return
+	}
+	fmt.Println(uid)
+}
+
 func TestRandomStr(t *testing.T) {
 	str := goist.RandStr(5)
 	if len(str) != 5 {
