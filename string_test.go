@@ -3,7 +3,24 @@ package goist_test
 import (
 	"fmt"
 	"github.com/lleiiell/goist"
+	"testing"
 )
+
+func TestRandomStr(t *testing.T) {
+	str := goist.RandStr(5)
+	if len(str) != 5 {
+		t.Error(str)
+		return
+	}
+	str1 := goist.RandStr(5)
+	if len(str1) != 5 {
+		t.Error(str1)
+		return
+	}
+
+	fmt.Println(str)
+	fmt.Println(str1)
+}
 
 func ExampleStrIsEmpty() {
 	s1 := ""

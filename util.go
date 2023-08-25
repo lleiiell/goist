@@ -58,6 +58,5 @@ func Contains(slice interface{}, item interface{}) bool {
 }
 
 func Rand() *rand.Rand {
-	rn := rand.New(rand.NewSource(time.Now().UnixNano()))
-	return rn
+	return rand.New(rand.NewSource(time.Now().UnixNano()))
 }

@@ -6,6 +6,17 @@ import (
 	"strings"
 )
 
+func RandStr(n int) string {
+	lowerLetterRunes := []rune("0123456789abcdefghijklmnopqrstuvwxyz")
+
+	b := make([]rune, n)
+	for i := range b {
+		b[i] = lowerLetterRunes[Rand().Intn(len(lowerLetterRunes))]
+	}
+
+	return string(b)
+}
+
 func IsStrEmpty(str string) bool {
 	return strings.TrimSpace(str) == ""
 }
