@@ -7,7 +7,7 @@ import (
 	"net/url"
 )
 
-// GinReverseProxy gin 反向代理
+// GinReverseProxy gin reverse proxy
 func GinReverseProxy(c *gin.Context, remoteUrl string) error {
 	remote, err := url.Parse(remoteUrl)
 	if err != nil {

@@ -6,6 +6,8 @@ import (
 	"strings"
 )
 
+// RandStr random string
+// n custom length
 func RandStr(n int) string {
 	lowerLetterRunes := []rune("0123456789abcdefghijklmnopqrstuvwxyz")
 

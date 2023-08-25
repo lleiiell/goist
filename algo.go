@@ -20,7 +20,7 @@ func BinarySearch(nums []int, target int) bool {
 
 /*
 BubbleSort
-冒泡排序的时间复杂度为 O(n^2)，效率较低
+The time complexity of bubble sorting is O(n^2), which is less efficient
 */
 func BubbleSort(nums []int) []int {
 	n := len(nums)
@@ -39,7 +39,7 @@ func BucketSort(nums []int, bucketSize int) []int {
 		return nums
 	}
 
-	// 计算最小值和最大值
+	// Calculate min and max values
 	minValue, maxValue := nums[0], nums[0]
 	for _, num := range nums {
 		if num < minValue {
@@ -49,22 +49,22 @@ func BucketSort(nums []int, bucketSize int) []int {
 		}
 	}
 
-	// 计算桶的数量
+	// Calculate the number of buckets
 	bucketCount := (maxValue-minValue)/bucketSize + 1
 
-	// 初始化桶
+	// Initialize bucket
 	buckets := make([][]int, bucketCount)
 	for i := 0; i < bucketCount; i++ {
 		buckets[i] = make([]int, 0)
 	}
 
-	// 将元素放入桶中
+	// put element into bucket
 	for _, num := range nums {
 		index := (num - minValue) / bucketSize
 		buckets[index] = append(buckets[index], num)
 	}
 
-	// 对每个桶进行排序
+	// Sort each bucket
 	var sortedNums []int
 	for _, bucket := range buckets {
 		if len(bucket) > 0 {
@@ -97,9 +97,9 @@ func FibonacciDP(n int) int {
 
 /*
 QuickSort
-快速排序算法的效率与 pivot 的选择有关。
-如果每次选择的 pivot 恰好是数组的中位数，那么算法的时间复杂度为 O(n log n)。
-如果每次选择的 pivot 恰好是数组的最小值或最大值，那么算法的时间复杂度为 O(n^2)，效率较低。
+The efficiency of the quicksort algorithm is related to the choice of pivot.
+If the pivot selected each time is exactly the median of the array, then the time complexity of the algorithm is O(n log n).
+If the pivot selected each time happens to be the minimum or maximum value of the array, then the time complexity of the algorithm is O(n^2), and the efficiency is low.
 */
 func QuickSort(nums []int) []int {
 	if len(nums) < 2 {
@@ -120,13 +120,13 @@ func QuickSort(nums []int) []int {
 }
 
 /*
-ClimbStairs3
-方法: ClimbStairs3
-语言: Go
-描述: 爬楼梯时，每次可以走一个或两个或三个台阶，总共有多少种爬法
-参数: 这个方法接收以下参数:
-x: 台阶总数
-输出: 爬台阶的方法数量
+ClimbStairs3 chatgpt generated code
+Method: ClimbStairs3
+Language: Go
+Description: When climbing stairs, you can walk one, two or three steps at a time. How many ways are there in total?
+Parameters: This method receives the following parameters:
+x: total number of steps
+Output: Number of ways to climb the stairs
 */
 func ClimbStairs3(x int) int {
 	if x <= 2 {
