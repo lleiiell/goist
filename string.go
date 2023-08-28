@@ -4,8 +4,10 @@ import (
 	"crypto/md5"
 	"encoding/base64"
 	"encoding/hex"
+	"fmt"
 	"github.com/google/uuid"
 	"strings"
+	"time"
 )
 
 // UuidSimple uuid without special characters
@@ -51,4 +53,9 @@ func MD5(str string) string {
 	c.Write([]byte(str))
 
 	return hex.EncodeToString(c.Sum(nil))
+}
+
+// Token generate token
+func Token() string {
+	return MD5(fmt.Sprintf("%d%d", Rand().Int63(), time.Now().UnixNano()))
 }

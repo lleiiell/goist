@@ -44,3 +44,11 @@ func ExampleMD5() {
 	fmt.Println(goist.MD5("hello"))
 	// Output: 5d41402abc4b2a76b9719d911017c592
 }
+
+func TestToken(t *testing.T) {
+	fmt.Println(goist.Token())
+	fmt.Println(goist.Token())
+	fmt.Println(goist.Token())
+	fmt.Println(goist.Token())
+	fmt.Println(goist.Token())
+}
