@@ -16,3 +16,12 @@ func ExampleDayBeginAt() {
 	// Output: 1693152000
 
 }
+
+func ExampleTimeDiffDays() {
+	t1, _ := time.Parse("2006-01-02 15", "2023-09-01 1")
+	t2, _ := time.Parse("2006-01-02 15", "2023-09-03 23")
+	t3, _ := time.Parse("2006-01-02 15", "2023-08-28 23")
+
+	fmt.Println(goist.TimeDiffDays(t1, t2), goist.TimeDiffDays(t3, t1))
+	// Output: 2 3
+}
