@@ -15,3 +15,8 @@ func DayBeginAt(t time.Time) int64 {
 func TimeDiffDays(start time.Time, end time.Time) int {
 	return int(end.Sub(start).Hours() / 24)
 }
+
+func TimeIsLeapYear(t time.Time) bool {
+	y := t.Year()
+	return y%4 == 0 && (y%100 != 0 || y%400 == 0)
+}
