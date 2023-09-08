@@ -39,6 +39,7 @@ func RandStr(n int) string {
 	b := make([]rune, n)
 	for i := range b {
 		b[i] = lowerLetterRunes[Rand().Intn(len(lowerLetterRunes))]
+		time.Sleep(1 * time.Nanosecond)
 	}
 
 	return string(b)
