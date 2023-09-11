@@ -5,6 +5,7 @@ import (
 	"strconv"
 )
 
+// IdMask Generate irregular, reversible masks
 func IdMask(id int64) (str string) {
 	return fmt.Sprintf("%s%s", strconv.FormatInt(id, 36), RandStr(3))
 }
