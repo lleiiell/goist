@@ -8,6 +8,7 @@ import (
 	"github.com/google/uuid"
 	"strings"
 	"time"
+	"unicode"
 )
 
 // UuidSimple uuid without special characters
@@ -59,4 +60,13 @@ func MD5(str string) string {
 // Token generate token
 func Token() string {
 	return MD5(fmt.Sprintf("%d%d", Rand().Int63(), time.Now().UnixNano()))
+}
+
+func IsAscii(s string) bool {
+	for i := 0; i < len(s); i++ {
+		if s[i] > unicode.MaxASCII {
+			return false
+		}
+	}
+	return true
 }

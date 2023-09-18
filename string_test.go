@@ -52,3 +52,12 @@ func TestToken(t *testing.T) {
 	fmt.Println(goist.Token())
 	fmt.Println(goist.Token())
 }
+
+func TestIsAscii(t *testing.T) {
+	fmt.Println(goist.IsAscii("你好"))
+	fmt.Println(goist.IsAscii("hello"))
+
+	// Output: true
+	// false
+
+}
