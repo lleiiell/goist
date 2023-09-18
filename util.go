@@ -60,3 +60,19 @@ func Contains(slice interface{}, item interface{}) bool {
 func Rand() *rand.Rand {
 	return rand.New(rand.NewSource(time.Now().UnixNano()))
 }
+
+func Retry(attempts int, sleep time.Duration, f func() error) error {
+	if err := f(); err != nil {
+		if attempts--; attempts > 0 {
+			// Add some randomness to prevent creating a Thundering Herd
+			jitter := time.Duration(Rand().Int63n(int64(sleep)))
+			sleep = sleep + jitter/2
+
+			time.Sleep(sleep)
+			return Retry(attempts, 2*sleep, f)
+		}
+		return err
+	}
+
+	return nil
+}

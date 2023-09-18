@@ -1,10 +1,12 @@
 package goist_test
 
 import (
+	"errors"
 	"fmt"
 	"github.com/lleiiell/goist"
 	"reflect"
 	"testing"
+	"time"
 )
 
 func TestContains(t *testing.T) {
@@ -79,4 +81,21 @@ func TestUnique(t *testing.T) {
 	}
 	fmt.Println("itl", itl)
 
+}
+
+func TestRetry(t *testing.T) {
+
+	i := 3
+	err := goist.Retry(10, 1*time.Second, func() error {
+		rd := goist.Rand().Intn(6)
+		fmt.Println(fmt.Sprintf("i is %d, rand number is %d,  time is %v", i, rd, time.Now()))
+		i--
+		if rd == 1 {
+			return nil
+		} else {
+			return errors.New(fmt.Sprintf("%d", rd))
+		}
+	})
+
+	fmt.Println(err)
 }
