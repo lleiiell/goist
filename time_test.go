@@ -34,3 +34,13 @@ func ExampleTimeIsLeapYear() {
 	fmt.Println(goist.TimeIsLeapYear(t1), goist.TimeIsLeapYear(t2), goist.TimeIsLeapYear(t3))
 	// Output: true false true
 }
+
+func ExampleTime2short() {
+	fmt.Println(goist.Time2short(10236 * time.Millisecond))
+	fmt.Println(goist.Time2short(1023600 * time.Millisecond))
+	fmt.Println(goist.Time2short(10236000 * time.Millisecond))
+
+	// Output: 10.24s
+	// 17.06m
+	// 2.84h
+}
