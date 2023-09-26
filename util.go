@@ -94,3 +94,18 @@ func SliceIntDiff2Right(a, b []int) (c []int) {
 
 	return
 }
+
+func ToInterfaceSlice(sl interface{}) (isl []interface{}) {
+	switch reflect.TypeOf(sl).Kind() {
+	case reflect.Slice, reflect.Array:
+	default:
+		return
+	}
+
+	s := reflect.ValueOf(sl)
+	for i := 0; i < s.Len(); i++ {
+		isl = append(isl, s.Index(i).Interface())
+	}
+
+	return
+}
