@@ -99,3 +99,13 @@ func TestRetry(t *testing.T) {
 
 	fmt.Println(err)
 }
+
+func ExampleSliceIntDiff2Right() {
+
+	s1 := []int{1, 2, 3}
+	s2 := []int{2, 4, 5}
+
+	fmt.Println(goist.SliceIntDiff2Right(s1, s2))
+
+	// Output: [1 3]
+}

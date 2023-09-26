@@ -76,3 +76,21 @@ func Retry(attempts int, sleep time.Duration, f func() error) error {
 
 	return nil
 }
+
+// SliceIntDiff2Right returns the elements in `a` that aren't in `b`.
+func SliceIntDiff2Right(a, b []int) (c []int) {
+
+	m := make(map[any]any)
+
+	for _, v := range b {
+		m[v] = 1
+	}
+
+	for _, v := range a {
+		if _, ok := m[v]; !ok {
+			c = append(c, v)
+		}
+	}
+
+	return
+}
