@@ -1,6 +1,8 @@
 package goist
 
-import "reflect"
+import (
+	"reflect"
+)
 
 // SliceIntDiff2Right returns the elements in `a` that aren't in `b`.
 func SliceIntDiff2Right(a, b []int) (c []int) {
@@ -33,4 +35,18 @@ func ToInterfaceSlice(sl interface{}) (isl []interface{}) {
 	}
 
 	return
+}
+
+// sliceRand generate an int slice from min to max.
+func sliceRand(min, max int) []int {
+	if max < min {
+		min, max = max, min
+	}
+	length := max - min + 1
+
+	list := Rand().Perm(length)
+	for index := range list {
+		list[index] += min
+	}
+	return list
 }
