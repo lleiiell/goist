@@ -50,3 +50,15 @@ func sliceRand(min, max int) []int {
 	}
 	return list
 }
+
+func SliceRandOne(sl interface{}) (item interface{}) {
+	switch reflect.TypeOf(sl).Kind() {
+	case reflect.Slice, reflect.Array:
+	default:
+		return
+	}
+
+	s := reflect.ValueOf(sl)
+	item = s.Index(Rand().Intn(s.Len())).Interface()
+	return
+}

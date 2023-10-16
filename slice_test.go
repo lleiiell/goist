@@ -34,3 +34,12 @@ func TestSliceRand(t *testing.T) {
 
 	fmt.Println(sliceRand(5, 22))
 }
+
+func TestSliceRandOne(t *testing.T) {
+	r1 := SliceRandOne([]string{"a", "b", "c", "d", "e", "f", "g", "h", "j"})
+	r2 := SliceRandOne([]string{"a", "b", "c", "d", "e", "f", "g", "h", "j"})
+	r3 := SliceRandOne([]int{11, 22, 33, 44, 55, 66, 77, 88, 99})
+	r4 := SliceRandOne([]int{11, 22, 33, 44, 55, 66, 77, 88, 99})
+
+	fmt.Println(r1.(string), r2, r3, r4)
+}
