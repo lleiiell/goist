@@ -20,3 +20,16 @@ func TestFileExists(t *testing.T) {
 	y3, err3 := FileExists("/lost+found")
 	fmt.Println("y3, err3: ", y3, err3)
 }
+
+func TestCsvWrite(t *testing.T) {
+	records := [][]string{
+		{"a", "aa", "aaa"},
+		{"b", "bb", "bbb"},
+	}
+
+	err := CsvWrite("/tmp/csvWrite.csv", records)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+}
