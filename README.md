@@ -1,5 +1,5 @@
 # goist
-Utilities for go
+Out-of-the-box functions for go
 
 ## Get started
 
