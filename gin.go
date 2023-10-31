@@ -18,9 +18,11 @@ func GinReverseProxy(c *gin.Context, remoteUrl string) error {
 	proxy.Director = func(req *http.Request) {
 		req.Header = c.Request.Header
 		req.Host = remote.Host
+
 		req.URL.Scheme = remote.Scheme
 		req.URL.Host = remote.Host
 		req.URL.Path = remote.Path
+		req.URL.RawQuery = c.Request.URL.RawQuery
 	}
 
 	proxy.ServeHTTP(c.Writer, c.Request)
