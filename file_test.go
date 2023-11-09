@@ -33,3 +33,10 @@ func TestCsvWrite(t *testing.T) {
 		return
 	}
 }
+
+func TestPathClean(t *testing.T) {
+	err := PathClean("/tmp/123/")
+	if err != nil {
+		t.Error(err)
+	}
+}

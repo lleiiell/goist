@@ -3,6 +3,7 @@ package goist
 import (
 	"encoding/csv"
 	"os"
+	"path"
 )
 
 func FileExists(filename string) (y bool, err error) {
@@ -49,4 +50,22 @@ func CsvWrite(filename string, records [][]string) (err error) {
 	}
 
 	return nil
+}
+
+func PathClean(dir string) (err error) {
+	dirEntry, errRead := os.ReadDir(dir)
+	if errRead != nil {
+		if os.IsNotExist(errRead) {
+			return
+		}
+		return errRead
+	}
+
+	for _, d := range dirEntry {
+		err = os.RemoveAll(path.Join(dir, d.Name()))
+		if err != nil {
+			return
+		}
+	}
+	return
 }
