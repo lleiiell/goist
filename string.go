@@ -70,3 +70,21 @@ func IsAscii(s string) bool {
 	}
 	return true
 }
+
+func IsJsonEmpty(data []byte) bool {
+	var jsonData interface{}
+	err := json.Unmarshal(data, &jsonData)
+	if err != nil {
+		// fmt.Println("Failed to unmarshal JSON:", err)
+		return true
+	}
+
+	switch jsonDataType := jsonData.(type) {
+	case map[string]interface{}:
+		return len(jsonDataType) == 0
+	case []interface{}:
+		return len(jsonDataType) == 0
+	default:
+		return true
+	}
+}
