@@ -59,3 +59,14 @@ func ExampleQuickSort() {
 
 	// Output: [11 22 33 44 55 66]
 }
+
+func ExampleInsertionSort() {
+	nums := []int{22, 11, 33, 55, 44, 66}
+	fmt.Println(nums)
+
+	InsertionSort(nums)
+	fmt.Println(nums)
+	// Output: [22 11 33 55 44 66]
+	// [11 22 33 44 55 66]
+
+}

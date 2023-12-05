@@ -75,6 +75,18 @@ func BucketSort(nums []int, bucketSize int) []int {
 	return sortedNums
 }
 
+func InsertionSort(arr []int) {
+	for i := range arr {
+		preIndex := i - 1
+		current := arr[i]
+		for preIndex >= 0 && arr[preIndex] > current {
+			arr[preIndex+1] = arr[preIndex]
+			preIndex -= 1
+		}
+		arr[preIndex+1] = current
+	}
+}
+
 func FibonacciRecursion(n int) int {
 	if n < 2 {
 		return n
