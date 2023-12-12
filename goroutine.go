@@ -1,7 +1,6 @@
 package goist
 
 import (
-	"fmt"
 	"sync"
 	"time"
 )
@@ -29,6 +28,5 @@ func concurrency(n int) <-chan time.Time {
 		return time.Tick(1 * time.Second)
 	}
 	c := 1e9 / n
-	fmt.Println(c)
 	return time.Tick(time.Nanosecond * time.Duration(c))
 }
