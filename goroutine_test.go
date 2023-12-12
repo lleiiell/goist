@@ -63,6 +63,46 @@ func TestConcurrencyTick(t *testing.T) {
 	}
 }
 
+/*
+=== RUN   TestAwaitAllWRL
+2023-12-12 14:40:47.881207186 +0800 CST m=+0.005446728 9
+2023-12-12 14:40:47.88120844 +0800 CST m=+0.005448021 4
+2023-12-12 14:40:48.081943066 +0800 CST m=+0.206182640 1
+2023-12-12 14:40:48.081897088 +0800 CST m=+0.206136643 0
+2023-12-12 14:40:48.282449929 +0800 CST m=+0.406689488 2
+2023-12-12 14:40:48.282497664 +0800 CST m=+0.406737230 3
+2023-12-12 14:40:48.482936089 +0800 CST m=+0.607175652 7
+2023-12-12 14:40:48.482974548 +0800 CST m=+0.607214139 8
+2023-12-12 14:40:48.683342967 +0800 CST m=+0.807582522 5
+2023-12-12 14:40:48.683410421 +0800 CST m=+0.807649992 6
+2023-12-12 14:40:48.883885259 +0800 CST m=+1.008124824 [{0 <nil>} {1 <nil>} {2 <nil>} {3 <nil>} {4 <nil>} {5 <nil>} {6 <nil>} {7 <nil>} {8 <nil>} {9 <nil>}]
+--- PASS: TestAwaitAllWRL (1.00s)
+*/
+func TestAwaitAllWRL(t *testing.T) {
+	inputs := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	type ExampleResponse struct {
+		data string
+		err  error
+	}
+
+	responses := AwaitAllWRL(inputs, func(input int) ExampleResponse {
+
+		// Error cannot be thrown, but must be in struct
+		var err error
+
+		fmt.Println(time.Now(), input)
+
+		time.Sleep(200 * time.Millisecond)
+
+		return ExampleResponse{
+			data: strconv.Itoa(input),
+			err:  err,
+		}
+	}, 2)
+
+	fmt.Println(time.Now(), responses)
+}
+
 func TestAwaitAll(t *testing.T) {
 	inputs := []int{3, 4, 5}
 	type ExampleResponse struct {
