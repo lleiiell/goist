@@ -23,7 +23,7 @@ func AwaitAll[Input any, Response any](inputs []Input, asyncFunc func(Input) Res
 	return responses
 }
 
-func concurrency(n int) <-chan time.Time {
+func concurrencyTick(n int) <-chan time.Time {
 	if n < 1 {
 		return time.Tick(1 * time.Second)
 	}
