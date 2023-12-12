@@ -19,9 +19,9 @@ import (
 2023-12-12 12:28:32.033845974 +0800 CST m=+4.511720645 8
 2023-12-12 12:28:32.534253095 +0800 CST m=+5.012127766 9
 */
-func TestSimpleTickConcurrency(t *testing.T) {
+func TestConcurrency(t *testing.T) {
 	for i := 0; i < 10; i++ {
-		<-time.Tick(500 * time.Millisecond)
+		<-concurrency(-1)
 		fmt.Println(time.Now(), i)
 	}
 }
