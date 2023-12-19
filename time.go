@@ -48,6 +48,17 @@ func Time2short(d time.Duration) string {
 	}
 }
 
-// func time2now(t time.Time) string {
-// 	duration := time.Since(t)
-// }
+func time2now(t time.Time) string {
+	d := time.Since(t)
+
+	if d < time.Minute {
+		return "刚刚"
+	} else if d < time.Hour {
+		return fmt.Sprintf("%d分钟", uint(d)/1000/1000/1000/60)
+	} else if d < time.Duration(24)*time.Hour {
+		return fmt.Sprintf("%d小时", uint(d)/1000/1000/1000/60/60)
+	} else {
+		return fmt.Sprintf("%d天", uint(d)/1000/1000/1000/60/60/24)
+	}
+
+}
