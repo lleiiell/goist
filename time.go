@@ -24,26 +24,30 @@ func TimeIsLeapYear(t time.Time) bool {
 
 // Time2short short string format
 func Time2short(d time.Duration) string {
-	u := uint64(d)
-	if u < uint64(time.Second) {
+	// u := uint64(d)
+	if d < time.Second {
 		switch {
-		case u == 0:
+		case d == 0:
 			return "0"
-		case u < uint64(time.Microsecond):
-			return fmt.Sprintf("%.2fns", float64(u))
-		case u < uint64(time.Millisecond):
-			return fmt.Sprintf("%.2fus", float64(u)/1000)
+		case d < time.Microsecond:
+			return fmt.Sprintf("%.2fns", float64(d))
+		case d < time.Millisecond:
+			return fmt.Sprintf("%.2fus", float64(d)/1000)
 		default:
-			return fmt.Sprintf("%.2fms", float64(u)/1000/1000)
+			return fmt.Sprintf("%.2fms", float64(d)/1000/1000)
 		}
 	} else {
 		switch {
-		case u < uint64(time.Minute):
-			return fmt.Sprintf("%.2fs", float64(u)/1000/1000/1000)
-		case u < uint64(time.Hour):
-			return fmt.Sprintf("%.2fm", float64(u)/1000/1000/1000/60)
+		case d < (time.Minute):
+			return fmt.Sprintf("%.2fs", float64(d)/1000/1000/1000)
+		case d < (time.Hour):
+			return fmt.Sprintf("%.2fm", float64(d)/1000/1000/1000/60)
 		default:
-			return fmt.Sprintf("%.2fh", float64(u)/1000/1000/1000/60/60)
+			return fmt.Sprintf("%.2fh", float64(d)/1000/1000/1000/60/60)
 		}
 	}
 }
+
+// func time2now(t time.Time) string {
+// 	duration := time.Since(t)
+// }
