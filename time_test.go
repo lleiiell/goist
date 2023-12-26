@@ -12,9 +12,15 @@ func ExampleDayBeginAt() {
 	t := time.Unix(1693193334, 0)
 	u := DayBeginAt(t)
 
-	fmt.Println(u)
-	// Output: 1693152000
+	fmt.Println(time.Unix(u, 0).Format(time.TimeOnly))
+	// Output: 00:00:00
 
+}
+
+func TestDayEndedAt(t *testing.T) {
+	tm := time.Unix(1693193334, 0)
+	tme := dayEndedAt(tm)
+	fmt.Println(time.Unix(tme, 0).Format(time.DateTime))
 }
 
 func ExampleTimeDiffDays() {

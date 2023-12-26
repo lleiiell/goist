@@ -12,6 +12,11 @@ func DayBeginAt(t time.Time) int64 {
 	return day.Unix()
 }
 
+// dayEndedAt unix timestamp of 23:59:59 o'clock of the day
+func dayEndedAt(t time.Time) int64 {
+	return DayBeginAt(t) + 86400 - 1
+}
+
 // TimeDiffDays number of days between given timestamps
 func TimeDiffDays(start time.Time, end time.Time) int {
 	return int(end.Sub(start).Hours() / 24)
