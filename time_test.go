@@ -20,7 +20,8 @@ func ExampleDayBeginAt() {
 func TestDayEndedAt(t *testing.T) {
 	tm := time.Unix(1693193334, 0)
 	tme := dayEndedAt(tm)
-	fmt.Println(time.Unix(tme, 0).Format(time.DateTime))
+	fmt.Println(time.Unix(tme, 0).Format(time.TimeOnly))
+	// Output: 23:59:59
 }
 
 func ExampleTimeDiffDays() {
@@ -51,9 +52,13 @@ func ExampleTime2short() {
 	// 2.84h
 }
 
-func TestTime2Now(t *testing.T) {
+func ExampleTime2now() {
 	fmt.Println(Time2now(time.Unix(time.Now().Unix()-5, 0)))
 	fmt.Println(Time2now(time.Unix(time.Now().Unix()-60*2-5, 0)))
 	fmt.Println(Time2now(time.Unix(time.Now().Unix()-3600*2-5, 0)))
 	fmt.Println(Time2now(time.Unix(time.Now().Unix()-86400*2-5, 0)))
+	// Output: 刚刚
+	// 2分钟
+	// 2小时
+	// 2天
 }
