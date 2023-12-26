@@ -48,7 +48,7 @@ func Time2short(d time.Duration) string {
 	}
 }
 
-func time2now(t time.Time) string {
+func Time2now(t time.Time) string {
 	d := time.Since(t)
 
 	if d < time.Minute {

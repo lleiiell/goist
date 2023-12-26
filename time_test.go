@@ -46,8 +46,8 @@ func ExampleTime2short() {
 }
 
 func TestTime2Now(t *testing.T) {
-	fmt.Println(time2now(time.Unix(time.Now().Unix()-5, 0)))
-	fmt.Println(time2now(time.Unix(time.Now().Unix()-60*2-5, 0)))
-	fmt.Println(time2now(time.Unix(time.Now().Unix()-3600*2-5, 0)))
-	fmt.Println(time2now(time.Unix(time.Now().Unix()-86400*2-5, 0)))
+	fmt.Println(Time2now(time.Unix(time.Now().Unix()-5, 0)))
+	fmt.Println(Time2now(time.Unix(time.Now().Unix()-60*2-5, 0)))
+	fmt.Println(Time2now(time.Unix(time.Now().Unix()-3600*2-5, 0)))
+	fmt.Println(Time2now(time.Unix(time.Now().Unix()-86400*2-5, 0)))
 }
