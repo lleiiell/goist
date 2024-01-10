@@ -24,12 +24,15 @@ func ExampleDayEndedAt() {
 }
 
 func ExampleTimeDiffDays() {
+	t0, _ := time.Parse("2006-01-02 15", "2023-08-28 23")
 	t1, _ := time.Parse("2006-01-02 15", "2023-09-01 1")
 	t2, _ := time.Parse("2006-01-02 15", "2023-09-03 23")
-	t3, _ := time.Parse("2006-01-02 15", "2023-08-28 23")
+	t3, _ := time.Parse("2006-01-02 15", "2023-09-04 1")
 
-	fmt.Println(TimeDiffDays(t1, t2), TimeDiffDays(t3, t1))
-	// Output: 2 3
+	fmt.Println(TimeDiffDays(t1, t0), TimeDiffDays(t2, t0), TimeDiffDays(t3, t1))
+	fmt.Println(TimeDiffDays(t3, t2), TimeDiffDays(t2, t3))
+	// Output: 4 6 3
+	// 1 1
 }
 
 func ExampleTimeIsLeapYear() {

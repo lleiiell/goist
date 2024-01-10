@@ -2,6 +2,7 @@ package goist
 
 import (
 	"fmt"
+	"math"
 	"time"
 )
 
@@ -17,9 +18,9 @@ func DayEndedAt(t time.Time) int64 {
 	return DayBeginAt(t) + 86400 - 1
 }
 
-// TimeDiffDays number of days between given timestamps
+// TimeDiffDays number of days between given time
 func TimeDiffDays(start time.Time, end time.Time) int {
-	return int(end.Sub(start).Hours() / 24)
+	return int(math.Ceil(math.Abs(end.Sub(start).Hours()) / 24))
 }
 
 func TimeIsLeapYear(t time.Time) bool {
