@@ -19,8 +19,17 @@ func DayEndedAt(t time.Time) int64 {
 }
 
 // TimeDiffDays number of days between given time
-func TimeDiffDays(start time.Time, end time.Time) int {
-	return int(math.Ceil(math.Abs(end.Sub(start).Hours()) / 24))
+func TimeDiffDays(first time.Time, second time.Time) int {
+
+	d1 := time.Date(first.Year(), first.Month(), first.Day(), 0, 0, 0, 0, time.Local)
+	d2 := time.Date(second.Year(), second.Month(), second.Day(), 0, 0, 0, 0, time.Local)
+
+	return int(math.Abs(d2.Sub(d1).Hours() / 24))
+}
+
+// timeIsSameDay
+func timeIsSameDay(first time.Time, second time.Time) bool {
+	return first.YearDay() == second.YearDay() && first.Year() == second.Year()
 }
 
 func TimeIsLeapYear(t time.Time) bool {
