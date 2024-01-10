@@ -19,7 +19,7 @@ func ExampleDayBeginAt() {
 
 func TestDayEndedAt(t *testing.T) {
 	tm := time.Unix(1693193334, 0)
-	tme := dayEndedAt(tm)
+	tme := DayEndedAt(tm)
 	fmt.Println(time.Unix(tme, 0).Format(time.TimeOnly))
 	// Output: 23:59:59
 }

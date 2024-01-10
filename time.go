@@ -12,8 +12,8 @@ func DayBeginAt(t time.Time) int64 {
 	return day.Unix()
 }
 
-// dayEndedAt unix timestamp of 23:59:59 o'clock of the day
-func dayEndedAt(t time.Time) int64 {
+// DayEndedAt unix timestamp of 23:59:59 o'clock of the day
+func DayEndedAt(t time.Time) int64 {
 	return DayBeginAt(t) + 86400 - 1
 }
 
