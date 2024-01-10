@@ -2,7 +2,6 @@ package goist
 
 import (
 	"fmt"
-	"testing"
 	"time"
 )
 
@@ -17,7 +16,7 @@ func ExampleDayBeginAt() {
 
 }
 
-func TestDayEndedAt(t *testing.T) {
+func ExampleDayEndedAt() {
 	tm := time.Unix(1693193334, 0)
 	tme := DayEndedAt(tm)
 	fmt.Println(time.Unix(tme, 0).Format(time.TimeOnly))
