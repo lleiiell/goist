@@ -1,6 +1,9 @@
 package goist
 
-import "sort"
+import (
+	"sort"
+	"sync"
+)
 
 func BinarySearch(nums []int, target int) bool {
 	sort.Ints(nums)
@@ -154,4 +157,70 @@ func ClimbStairs3(x int) int {
 		f3 = f4
 	}
 	return f4
+}
+
+type RrItem struct {
+	Id int64
+}
+
+type RoundRobin struct {
+	items []RrItem
+	next  int
+	lock  sync.Mutex
+}
+
+func (r *RoundRobin) Add(item RrItem) {
+	r.lock.Lock()
+	defer r.lock.Unlock()
+
+	for _, v := range r.items {
+		if v.Id == item.Id {
+			return
+		}
+	}
+
+	if r.next == 0 {
+		r.items = append(r.items, item)
+		return
+	}
+	r.items = append(r.items[:r.next+1], r.items[r.next:]...)
+	r.items[r.next] = item
+	r.next = r.next + 1
+
+}
+
+func (r *RoundRobin) Remove(item RrItem) {
+	r.lock.Lock()
+	defer r.lock.Unlock()
+
+	for k, v := range r.items {
+		if v.Id == item.Id {
+			r.items = append(r.items[:k], r.items[k+1:]...)
+			// 删除的元素位于下一个元素之前，下一个元素-1
+			// 删除的元素为下一个元素，判断调头
+			// 删除的元素位于下一个元素之后，不用处理
+			if r.next > k && r.next > 0 {
+				r.next = r.next - 1
+			} else if r.next == k && r.next == len(r.items) {
+				r.next = 0
+			}
+			return
+		}
+	}
+
+}
+
+func (r *RoundRobin) Next() RrItem {
+	r.lock.Lock()
+	defer r.lock.Unlock()
+
+	item := r.items[r.next]
+
+	if r.next == len(r.items)-1 {
+		r.next = 0
+	} else {
+		r.next = r.next + 1
+	}
+
+	return item
 }
