@@ -214,6 +214,10 @@ func (r *RoundRobin) Next() RrItem {
 	r.lock.Lock()
 	defer r.lock.Unlock()
 
+	if len(r.items) == 0 {
+		return RrItem{}
+	}
+
 	item := r.items[r.next]
 
 	if r.next == len(r.items)-1 {
