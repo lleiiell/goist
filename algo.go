@@ -163,13 +163,13 @@ type RrItem struct {
 	Id int64
 }
 
-type RoundRobin struct {
+type RoundRobinScheduler struct {
 	items []RrItem
 	next  int
 	lock  sync.Mutex
 }
 
-func (r *RoundRobin) Add(item RrItem) {
+func (r *RoundRobinScheduler) Add(item RrItem) {
 	r.lock.Lock()
 	defer r.lock.Unlock()
 
@@ -189,7 +189,7 @@ func (r *RoundRobin) Add(item RrItem) {
 
 }
 
-func (r *RoundRobin) Remove(item RrItem) {
+func (r *RoundRobinScheduler) Remove(item RrItem) {
 	r.lock.Lock()
 	defer r.lock.Unlock()
 
@@ -210,7 +210,7 @@ func (r *RoundRobin) Remove(item RrItem) {
 
 }
 
-func (r *RoundRobin) Next() RrItem {
+func (r *RoundRobinScheduler) Next() RrItem {
 	r.lock.Lock()
 	defer r.lock.Unlock()
 
