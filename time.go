@@ -27,8 +27,7 @@ func TimeDiffDays(first time.Time, second time.Time) int {
 	return int(math.Abs(d2.Sub(d1).Hours() / 24))
 }
 
-// timeIsSameDay
-func timeIsSameDay(first time.Time, second time.Time) bool {
+func TimeIsSameDay(first time.Time, second time.Time) bool {
 	return first.YearDay() == second.YearDay() && first.Year() == second.Year()
 }
 

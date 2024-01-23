@@ -2,7 +2,6 @@ package goist
 
 import (
 	"fmt"
-	"testing"
 	"time"
 )
 
@@ -36,8 +35,16 @@ func ExampleTimeDiffDays() {
 	// Output: 0 1 1 364
 }
 
-func TesttimeIsSameDay(t testing.T) {
-	// timeIsSameDay(t0, t1)
+func ExampleTimeIsSameDay() {
+	t0, _ := time.Parse(time.DateTime, "2023-08-28 00:10:00")
+	t1, _ := time.Parse(time.DateTime, "2023-08-28 23:00:00")
+	t2, _ := time.Parse(time.DateTime, "2023-08-29 00:10:00")
+	t3, _ := time.Parse(time.DateTime, "2023-08-29 23:59:59")
+	t4, _ := time.Parse(time.DateTime, "2022-08-29 23:59:59")
+
+	fmt.Println(TimeIsSameDay(t0, t1), TimeIsSameDay(t0, t2), TimeIsSameDay(t3, t4))
+	// Output: true false false
+
 }
 
 func ExampleTimeIsLeapYear() {
