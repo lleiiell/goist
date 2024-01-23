@@ -76,3 +76,16 @@ func Time2now(t time.Time) string {
 	}
 
 }
+
+func countWeekday(start, end time.Time, day time.Weekday) int {
+	total := 0
+
+	for start.Before(end) {
+		if start.Weekday() == day {
+			total = total + 1
+		}
+		start = start.AddDate(0, 0, 1)
+	}
+
+	return total
+}
