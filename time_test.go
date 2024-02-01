@@ -76,3 +76,9 @@ func ExampleTime2now() {
 	// 2小时
 	// 2天
 }
+
+func ExampleCountWeekday() {
+	c1 := CountWeekday(time.Unix(time.Now().Unix()-86400*14, 0), time.Now(), time.Tuesday)
+	fmt.Println(c1)
+	// Output: 2
+}

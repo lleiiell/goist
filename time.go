@@ -77,7 +77,7 @@ func Time2now(t time.Time) string {
 
 }
 
-func countWeekday(start, end time.Time, day time.Weekday) int {
+func CountWeekday(start, end time.Time, day time.Weekday) int {
 	total := 0
 
 	for start.Before(end) {
