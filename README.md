@@ -42,6 +42,6 @@ Goist is licensed under the [Apache License, Version 2.0](http://www.apache.org/
 
 ## Contributing
 
-Please see CONTRIBUTING for details on submitting patches and the contribution workflow.
+Please see [CONTRIBUTING](./CONTRIBUTING.md) for details on submitting patches and the contribution workflow.
 
 We appreciate your help!
