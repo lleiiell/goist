@@ -1,13 +1,12 @@
-package goist_test
+package goist
 
 import (
 	"fmt"
-	"github.com/lleiiell/goist"
 	"testing"
 )
 
 func TestUuidSimple(t *testing.T) {
-	uid := goist.UuidSimple()
+	uid := UuidSimple()
 	if len(uid) < 22 {
 		t.Error(len(uid), uid)
 		return
@@ -16,12 +15,12 @@ func TestUuidSimple(t *testing.T) {
 }
 
 func TestRandomStr(t *testing.T) {
-	str := goist.RandStr(5)
+	str := RandStr(5)
 	if len(str) != 5 {
 		t.Error(str)
 		return
 	}
-	str1 := goist.RandStr(5)
+	str1 := RandStr(5)
 	if len(str1) != 5 {
 		t.Error(str1)
 		return
@@ -36,28 +35,40 @@ func ExampleStrIsEmpty() {
 	s2 := "a bc"
 	s3 := "  "
 	s4 := "\n \t"
-	fmt.Println(goist.IsStrEmpty(s1), goist.IsStrEmpty(s2), goist.IsStrEmpty(s3), goist.IsStrEmpty(s4))
+	fmt.Println(IsStrEmpty(s1), IsStrEmpty(s2), IsStrEmpty(s3), IsStrEmpty(s4))
 	// Output: true false true true
 }
 
 func ExampleMD5() {
-	fmt.Println(goist.MD5("hello"))
+	fmt.Println(MD5("hello"))
 	// Output: 5d41402abc4b2a76b9719d911017c592
 }
 
 func TestToken(t *testing.T) {
-	fmt.Println(goist.Token())
-	fmt.Println(goist.Token())
-	fmt.Println(goist.Token())
-	fmt.Println(goist.Token())
-	fmt.Println(goist.Token())
+	fmt.Println(Token())
+	fmt.Println(Token())
+	fmt.Println(Token())
+	fmt.Println(Token())
+	fmt.Println(Token())
 }
 
 func TestIsAscii(t *testing.T) {
-	fmt.Println(goist.IsAscii("你好"))
-	fmt.Println(goist.IsAscii("hello"))
+	fmt.Println(IsAscii("你好"))
+	fmt.Println(IsAscii("hello"))
 
 	// Output: true
 	// false
 
+}
+
+func TestStringDiff(t *testing.T) {
+	a := "颊琰👁霓"
+	b := "颊琰👁霓斡"
+
+	same, diffA, diffB := stringDiff(a, b)
+	if same != "颊琰👁霓" || diffA != "" || diffB != "斡" {
+		t.Error(same, diffA, diffB)
+		return
+	}
+	fmt.Println("same", same, "diffA", diffA, "diffB", diffB)
 }

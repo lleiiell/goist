@@ -98,3 +98,24 @@ func isAscii(s string) bool {
 	}
 	return true
 }
+
+func stringDiff(a, b string) (same string, diffA string, diffB string) {
+
+	ba := []rune(a)
+	bb := []rune(b)
+
+	i := 0
+	for ; i < len(ba) && i < len(bb); i++ {
+		if ba[i] != bb[i] {
+			break
+		}
+
+		same += string(ba[i])
+
+	}
+
+	diffA = string(ba[i:])
+	diffB = string(bb[i:])
+
+	return
+}
