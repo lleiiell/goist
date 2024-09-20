@@ -6,18 +6,15 @@ import (
 	"path"
 )
 
-func FileExists(filename string) (y bool, err error) {
-	_, errStat := os.Stat(filename)
-	if errStat != nil {
-		if os.IsNotExist(errStat) {
-			return
-		}
-		err = errStat
-		return
+func pathExists(path string) (bool, error) {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true, nil
 	}
-
-	y = true
-	return
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	return false, err
 }
 
 func FileCreate(filename string) (*os.File, error) {
@@ -26,7 +23,7 @@ func FileCreate(filename string) (*os.File, error) {
 }
 
 func CsvWrite(filename string, records [][]string) (err error) {
-	exists, errE := FileExists(filename)
+	exists, errE := pathExists(filename)
 	if errE != nil {
 		return errE
 	}

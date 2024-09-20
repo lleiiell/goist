@@ -10,14 +10,14 @@ y, err:  true <nil>
 y2, err2:  false stat /root/Music: permission denied
 y3, err3:  true <nil>
 */
-func TestFileExists(t *testing.T) {
-	y, err := FileExists("/root")
+func TestPathExists(t *testing.T) {
+	y, err := pathExists("/root")
 	fmt.Println("y, err: ", y, err)
 
-	y2, err2 := FileExists("/root/Music")
+	y2, err2 := pathExists("/root/Music")
 	fmt.Println("y2, err2: ", y2, err2)
 
-	y3, err3 := FileExists("/lost+found")
+	y3, err3 := pathExists("/lost+found")
 	fmt.Println("y3, err3: ", y3, err3)
 }
 
