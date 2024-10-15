@@ -11,13 +11,13 @@ y2, err2:  false stat /root/Music: permission denied
 y3, err3:  true <nil>
 */
 func TestPathExists(t *testing.T) {
-	y, err := pathExists("/root")
+	y, err := PathExists("/root")
 	fmt.Println("y, err: ", y, err)
 
-	y2, err2 := pathExists("/root/Music")
+	y2, err2 := PathExists("/root/Music")
 	fmt.Println("y2, err2: ", y2, err2)
 
-	y3, err3 := pathExists("/lost+found")
+	y3, err3 := PathExists("/lost+found")
 	fmt.Println("y3, err3: ", y3, err3)
 }
 
