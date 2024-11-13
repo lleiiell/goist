@@ -3,6 +3,8 @@ package goist
 import (
 	"encoding/json"
 	"fmt"
+	"os/exec"
+	"testing"
 )
 
 func ExampleJsonPreUnmarshal() {
@@ -24,4 +26,21 @@ func ExampleJsonPreUnmarshal() {
 	fmt.Println("people: ", p)
 
 	// Output: people:  {link 22}
+}
+
+/*
+=== RUN   TestPipeCommands
+Wed Nov 13 16:11:04 CST 2024
+Wed Nov 13 16:11:09 CST 2024
+
+--- PASS: TestPipeCommands (5.01s)
+PASS
+*/
+func TestPipeCommands(t *testing.T) {
+	rt, err := exec.Command("bash", "-c", "date && sleep 5 && date").Output()
+	if err != nil {
+		t.Error(err)
+	}
+
+	fmt.Printf("%s\n", rt)
 }
