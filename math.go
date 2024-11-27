@@ -2,6 +2,7 @@ package goist
 
 import (
 	"fmt"
+	"math"
 	"strconv"
 )
 
@@ -18,4 +19,8 @@ func IdUnmask(mask string) (id int64) {
 
 	id, _ = strconv.ParseInt(string(runeSli[:len(runeSli)-3]), 36, 64)
 	return
+}
+
+func round2NearestHalf(num float64) float64 {
+	return math.Round(num*2) / 2
 }
