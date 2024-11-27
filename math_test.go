@@ -32,3 +32,16 @@ func ExampleFloatDivide() {
 	// 3.3333333
 	// 3.3333333333333335
 }
+
+func ExampleXor() {
+	var a, b uint64
+	a = 0xfeb6372a8750eb1d
+	b = 0xfeb6372a8750eb1e
+	fmt.Println(fmt.Sprintf("%b, %b", a, b))
+	fmt.Println(a ^ b)
+
+	fmt.Println(8 ^ 7)
+	// Output: 1111111010110110001101110010101010000111010100001110101100011101, 1111111010110110001101110010101010000111010100001110101100011110
+	// 3
+	// 15
+}
