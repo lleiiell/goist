@@ -45,3 +45,29 @@ func ExampleXor() {
 	// 3
 	// 15
 }
+
+func ExampleRound2NearestHalf() {
+
+	fs := []float64{0.1, 0.9, 1.1, 1.5, 1.9, 2.1, 2.5, 2.9, 3.1, 3.5, 3.9, 4.1, 4.5, 4.9, 5.1, 5}
+
+	for _, v := range fs {
+		fmt.Println(goist.Round2NearestHalf(v))
+	}
+
+	// Output: 0
+	// 1
+	// 1
+	// 1.5
+	// 2
+	// 2
+	// 2.5
+	// 3
+	// 3
+	// 3.5
+	// 4
+	// 4
+	// 4.5
+	// 5
+	// 5
+	// 5
+}

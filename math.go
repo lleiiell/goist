@@ -21,6 +21,6 @@ func IdUnmask(mask string) (id int64) {
 	return
 }
 
-func round2NearestHalf(num float64) float64 {
+func Round2NearestHalf(num float64) float64 {
 	return math.Round(num*2) / 2
 }
