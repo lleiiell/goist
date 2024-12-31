@@ -6,6 +6,16 @@ import (
 	"testing"
 )
 
+func ExampleSum() {
+	fmt.Println(goist.Sum([]int{1, 2, 3, 4, 5}))
+	fmt.Println(goist.Sum([]int64{1, 2, 3, 4, 5}))
+	fmt.Println(goist.Sum([]float64{1.1, 2.2, 3.3, 4.4, 5.5}))
+
+	// Output: 15
+	// 15
+	// 16.5
+}
+
 func TestIdMask(t *testing.T) {
 	fmt.Println(goist.IdMask(1))
 	fmt.Println(goist.IdMask(999))
