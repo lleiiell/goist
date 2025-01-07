@@ -4,8 +4,34 @@ import (
 	"math/rand"
 	"reflect"
 	"sort"
+	"sync"
 	"time"
 )
+
+func rateLimiter(limit int, duration time.Duration) func() bool {
+	var mu sync.Mutex
+	var timestamps []time.Time
+
+	return func() bool {
+		mu.Lock()
+		defer mu.Unlock()
+
+		now := time.Now()
+		// Remove timestamps older than the specified duration
+		validUntil := now.Add(-duration)
+		for len(timestamps) > 0 && timestamps[0].Before(validUntil) {
+			timestamps = timestamps[1:] // Remove old timestamps
+		}
+
+		// Check if we can add a new request
+		if len(timestamps) < limit {
+			timestamps = append(timestamps, now)
+			return true // Allowed
+		}
+
+		return false // Rate limit exceeded
+	}
+}
 
 func Unique(slicePtr interface{}) {
 
