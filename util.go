@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func rateLimiter(limit int, duration time.Duration) func() bool {
+func RateLimiter(limit int, duration time.Duration) func() bool {
 	var mu sync.Mutex
 	var timestamps []time.Time
 

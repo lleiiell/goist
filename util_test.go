@@ -99,3 +99,27 @@ func TestRetry(t *testing.T) {
 
 	fmt.Println(err)
 }
+
+func ExampleRateLimiter() {
+	rl := goist.RateLimiter(10, 1*time.Second)
+
+	for i := 1; i <= 10; i++ {
+		if rl() {
+			fmt.Printf("Request %d: Allowed\n", i)
+		} else {
+			fmt.Printf("Request %d: Rate limit exceeded\n", i)
+		}
+		time.Sleep(2 * time.Second) // Simulate time between requests
+	}
+
+	// Output: Request 1: Allowed
+	// Request 2: Allowed
+	// Request 3: Allowed
+	// Request 4: Allowed
+	// Request 5: Allowed
+	// Request 6: Allowed
+	// Request 7: Allowed
+	// Request 8: Allowed
+	// Request 9: Allowed
+	// Request 10: Allowed
+}
