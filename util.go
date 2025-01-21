@@ -1,6 +1,8 @@
 package goist
 
 import (
+	"errors"
+	"fmt"
 	"math/rand"
 	"reflect"
 	"sort"
@@ -101,4 +103,20 @@ func Retry(attempts int, sleep time.Duration, f func() error) error {
 	}
 
 	return nil
+}
+
+func retryWithBackoff(maxRetries int, backoffFactor time.Duration, operation func() error) error {
+	for i := 0; i < maxRetries; i++ {
+		err := operation()
+		if err == nil {
+			return nil
+		}
+
+		// calc backoff duration
+		backoffTime := backoffFactor * time.Duration(1<<i) // exponential backoff
+		fmt.Printf("Attempt %d failed: %s. Retrying in %s...\n", i+1, err, backoffTime)
+
+		time.Sleep(backoffTime + time.Duration(rand.Int63n(int64(backoffFactor))))
+	}
+	return errors.New("max retries exceeded")
 }
