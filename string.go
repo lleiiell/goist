@@ -99,7 +99,7 @@ func isAscii(s string) bool {
 	return true
 }
 
-func stringDiff(a, b string) (same string, diffA string, diffB string) {
+func StringDiff(a, b string) (same string, diffA string, diffB string) {
 
 	ba := []rune(a)
 	bb := []rune(b)

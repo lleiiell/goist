@@ -65,7 +65,7 @@ func TestStringDiff(t *testing.T) {
 	a := "颊琰👁霓"
 	b := "颊琰👁霓斡"
 
-	same, diffA, diffB := stringDiff(a, b)
+	same, diffA, diffB := StringDiff(a, b)
 	if same != "颊琰👁霓" || diffA != "" || diffB != "斡" {
 		t.Error(same, diffA, diffB)
 		return
