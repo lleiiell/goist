@@ -119,3 +119,15 @@ func StringDiff(a, b string) (same string, diffA string, diffB string) {
 
 	return
 }
+
+func wordFrequency(text string) map[string]int {
+	frequency := make(map[string]int)
+
+	words := strings.Fields(strings.ToLower(text))
+
+	for _, word := range words {
+		frequency[word]++
+	}
+
+	return frequency
+}

@@ -72,3 +72,12 @@ func TestStringDiff(t *testing.T) {
 	}
 	fmt.Println("same", same, "diffA", diffA, "diffB", diffB)
 }
+
+func TestWordFrequency(t *testing.T) {
+	a := "test word frequency, world  word"
+	b := "hello world word"
+
+	reta := wordFrequency(a)
+	retb := wordFrequency(b)
+	fmt.Println("reta", reta, "retb", retb)
+}
