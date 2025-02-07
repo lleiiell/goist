@@ -80,6 +80,8 @@ func Contains(slice interface{}, item interface{}) bool {
 				return true
 			}
 		}
+	default:
+		return false
 	}
 
 	return false
