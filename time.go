@@ -90,7 +90,7 @@ func CountWeekday(start, end time.Time, day time.Weekday) int {
 	return total
 }
 
-func TickerRun(f func() error, duration time.Duration) (err error) {
+func tickerRun(f func() error, duration time.Duration) (err error) {
 
 	ticker := time.NewTicker(duration)
 	defer ticker.Stop()
