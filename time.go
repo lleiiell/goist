@@ -89,3 +89,28 @@ func CountWeekday(start, end time.Time, day time.Weekday) int {
 
 	return total
 }
+
+func TickerRun(f func() error, duration time.Duration) (err error) {
+
+	ticker := time.NewTicker(duration)
+	defer ticker.Stop()
+
+	ch := make(chan struct{}, 1)
+	ch <- struct{}{}
+
+	for {
+		select {
+		case <-ch:
+			err = f()
+			if err != nil {
+				return err
+			}
+		case <-ticker.C:
+			err = f()
+			if err != nil {
+				return err
+			}
+		}
+	}
+
+}
